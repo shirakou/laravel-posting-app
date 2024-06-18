@@ -47,6 +47,6 @@ class User extends Authenticatable implements MustVerifyEmail
     // 一人のユーザーは複数の投稿を作成できる
     public function  posts()
     {
-        return $this->hasMany(POST::clas);
+        return $this->hasMany(POST::class);
     }
 }
