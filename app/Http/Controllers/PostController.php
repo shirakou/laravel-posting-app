@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -32,6 +33,10 @@ $post->title =$request->input('title');
 $post->content =$request->input('content');
 $post->user_id = Auth::id();
 $post->save();
+$request->validate([
+    'title' => 'required|max:40',
+    'content' => 'required|max:200'
+]);
 
 return redirect()->route('posts.index')->with('flash_message', '投稿が完了しました。');
 }
